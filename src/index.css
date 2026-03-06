@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 240 10% 10%;
+
+    --card: 40 15% 95%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 40 15% 95%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 230 45% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 250 25% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 90%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 250 30% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 230 45% 48%;
+
+    --radius: 0.75rem;
+
+    --glow-primary: 230 45% 48%;
+    --glow-secondary: 250 25% 55%;
+    --glow-accent: 250 30% 50%;
+    --surface-glass: 40 10% 94%;
+
+    --sidebar-background: 40 20% 97%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 230 45% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 90%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 220 13% 87%;
+    --sidebar-ring: 230 45% 48%;
+  }
+
+  .dark {
+    --background: 228 15% 7%;
+    --foreground: 220 20% 90%;
+
+    --card: 228 15% 10%;
+    --card-foreground: 220 20% 90%;
+
+    --popover: 228 15% 10%;
+    --popover-foreground: 220 20% 90%;
+
+    --primary: 230 60% 65%;
+    --primary-foreground: 228 15% 7%;
+
+    --secondary: 260 40% 60%;
+    --secondary-foreground: 220 20% 90%;
+
+    --muted: 228 12% 14%;
+    --muted-foreground: 220 15% 50%;
+
+    --accent: 260 35% 55%;
+    --accent-foreground: 220 20% 90%;
+
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 220 20% 90%;
+
+    --border: 228 12% 17%;
+    --input: 228 12% 17%;
+    --ring: 230 60% 65%;
+
+    --glow-primary: 230 60% 65%;
+    --glow-secondary: 260 40% 60%;
+    --glow-accent: 260 35% 55%;
+    --surface-glass: 228 12% 11%;
+
+    --sidebar-background: 228 15% 7%;
+    --sidebar-foreground: 220 20% 90%;
+    --sidebar-primary: 230 60% 65%;
+    --sidebar-primary-foreground: 228 15% 7%;
+    --sidebar-accent: 228 12% 14%;
+    --sidebar-accent-foreground: 220 20% 90%;
+    --sidebar-border: 228 12% 17%;
+    --sidebar-ring: 230 60% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    /* Theme transition only on body background/color, not * wildcard */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/70 border border-border/50 rounded-2xl;
+    /* backdrop-blur only on desktop — extremely expensive on mobile GPU */
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px -8px hsl(var(--foreground) / 0.06);
+  }
+
+  @media (max-width: 767px) {
+    .glass-card {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: hsl(var(--card) / 0.92);
+    }
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 4px 30px -10px hsl(var(--glow-primary) / 0.06),
+      0 1px 0 0 hsl(var(--border) / 0.5);
+  }
+
+  .glass-nav {
+    @apply bg-background/80 border-b border-border/40;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  @media (max-width: 767px) {
+    .glass-nav {
+      background: hsl(var(--background) / 0.96);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--accent)) 100%
+    );
+  }
+
+  .gradient-text-animated {
+    @apply bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 33%,
+      hsl(var(--accent)) 66%,
+      hsl(var(--primary)) 100%
+    );
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
+  .neon-glow-hover:hover {
+    box-shadow: 0 4px 30px -8px hsl(var(--primary) / 0.15);
+  }
+
+  .floating-shadow {
+    box-shadow:
+      0 20px 40px -12px hsl(var(--foreground) / 0.08),
+      0 0 0 1px hsl(var(--border) / 0.5);
+  }
+
+  .dark .floating-shadow {
+    box-shadow:
+      0 20px 40px -12px hsl(var(--background) / 0.8),
+      0 0 0 1px hsl(var(--border) / 0.3);
+  }
+
+  .section-padding {
+    @apply px-5 md:px-12 lg:px-20 xl:px-32;
+  }
+
+  .skill-bar-track {
+    @apply h-1.5 rounded-full bg-muted overflow-hidden;
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-medium px-6 py-3 rounded-xl text-sm;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-primary:hover {
+    @apply shadow-lg;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px hsl(var(--primary) / 0.4);
+  }
+
+  .btn-outline {
+    @apply border border-border text-foreground font-medium px-6 py-3 rounded-xl text-sm hover:bg-muted/50;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-outline:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Grain overlay */
+  .grain-overlay::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Disable grain on mobile — not worth the composite layer */
+  @media (max-width: 767px) {
+    .grain-overlay::after {
+      display: none;
+    }
+  }
+
+  .dark .grain-overlay::after {
+    opacity: 0.03;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* Smooth theme transition — only background-color and color, NOT on * */
+html {
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Mobile Layout Fixes ──────────────────────────────────────── */
+
+/* Prevent horizontal overflow on mobile */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Fix section padding on small screens */
+  .section-padding {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Hero: center-align text on mobile */
+  #hero .relative.z-20 {
+    text-align: center;
+  }
+
+  #hero .flex.flex-wrap.gap-4 {
+    justify-content: center;
+  }
+
+  #hero .flex.gap-8.mt-12 {
+    justify-content: center;
+  }
+
+  /* Prevent cards from overflowing */
+  .glass-card {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Projects bento — single column on mobile, equal width */
+  #projects .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Experience timeline — reduce left padding */
+  #experience .pl-10 {
+    padding-left: 2rem;
+  }
+
+  /* Contact form full width inputs */
+  #contact input,
+  #contact textarea {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+
+  /* Footer: center all columns */
+  footer .grid {
+    text-align: center;
+  }
+
+  footer .md\:items-start {
+    align-items: center !important;
+  }
+
+  /* About cards: 2 col grid stays but with tighter padding */
+  #about .glass-card {
+    padding: 1rem;
+  }
+
+  /* Reduce hero font size slightly more on very small screens */
+  #hero h1 {
+    line-height: 1.05;
+  }
+}
+
+@media (max-width: 380px) {
+  #hero h1 {
+    font-size: 2.2rem !important;
+  }
+}
