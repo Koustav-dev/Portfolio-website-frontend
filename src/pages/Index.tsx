@@ -10,7 +10,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Lazy-load below-fold sections so only Hero renders on initial paint
 const About      = lazy(() => import("@/components/About/About"));
 const Projects   = lazy(() => import("@/components/Projects/Projects"));
-const Experience = lazy(() => import("@/components/Experience/Experience"));
 const Contact    = lazy(() => import("@/components/Contact/Contact"));
 const Footer     = lazy(() => import("@/components/Footer/Footer"));
 
@@ -46,7 +45,6 @@ const Index = () => {
       <Suspense fallback={null}>
         <About />
         <Projects />
-        <Experience />
         <Contact />
         <Footer />
       </Suspense>
