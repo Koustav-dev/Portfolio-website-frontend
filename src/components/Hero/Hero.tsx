@@ -273,9 +273,9 @@ const Hero = () => {
             className="flex gap-8 mt-12 pt-8 border-t border-border/30"
           >
             {[
-              { value: "5+",  label: "Years Exp"  },
-              { value: "50+", label: "Projects"   },
-              { value: "30+", label: "Clients"    },
+              { value: "5+",  label: "Years Exp"   },
+              { value: "50+", label: "Projects"    },
+              { value: "10+", label: "Open Source" },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
