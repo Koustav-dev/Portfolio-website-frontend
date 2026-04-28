@@ -104,7 +104,7 @@ const Contact = () => {
           className="flex flex-wrap justify-center gap-3 mb-10"
         >
           {[
-            { label: "hello@eraf.dev",  icon: Mail,         href: "mailto:hello@eraf.dev" },
+            { label: "koustavp63@gmail.com",  icon: Mail,         href: "mailto:hello@eraf.dev" },
             { label: "Schedule a Call", icon: ArrowUpRight, href: "#"                     },
           ].map(({ label, icon: Icon, href }) => (
             <motion.a
