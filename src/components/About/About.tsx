@@ -6,11 +6,11 @@ import SectionReveal from "@/components/SectionReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const skills = [
-  { name: "React / Next.js", level: 95, color: "from-primary to-secondary"  },
-  { name: "TypeScript",      level: 90, color: "from-secondary to-accent"    },
-  { name: "UI/UX Design",    level: 88, color: "from-accent to-primary"      },
-  { name: "Node.js",         level: 82, color: "from-primary to-accent"      },
-  { name: "Motion Design",   level: 85, color: "from-secondary to-primary"   },
+  { name: "React / Next.js",   level: 95, color: "from-primary to-secondary"  },
+  { name: "TypeScript",        level: 90, color: "from-secondary to-accent"    },
+  { name: "Node.js / Express", level: 88, color: "from-accent to-primary"      },
+  { name: "REST API Design",   level: 85, color: "from-primary to-accent"      },
+  { name: "PostgreSQL / MongoDB", level: 80, color: "from-secondary to-primary" },
 ];
 
 const cards = [
